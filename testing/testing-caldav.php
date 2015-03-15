@@ -50,5 +50,3 @@ sleep(60);
 
 $results = $caldav->GetSync($path, false, CALDAV_SUPPORTS_SYNC);
 print_r($results);
-
-?>

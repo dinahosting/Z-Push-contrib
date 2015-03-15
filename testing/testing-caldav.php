@@ -3,11 +3,7 @@
 // Test CalDAV server
 // This code will do an initial sync and a second sync.
 
-include_once('include/z_caldav.php');
-
-include_once('lib/utils/utils.php');
-include_once('lib/core/zpushdefs.php');
-include_once('lib/core/zlog.php');
+require_once 'vendor/autoload.php';
 
 define('LOGLEVEL', LOGLEVEL_DEBUG);
 define('LOGUSERLEVEL', LOGLEVEL_DEVICEID);

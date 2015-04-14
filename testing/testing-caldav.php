@@ -8,14 +8,16 @@ require_once 'vendor/autoload.php';
 define('LOGLEVEL', LOGLEVEL_DEBUG);
 define('LOGUSERLEVEL', LOGLEVEL_DEVICEID);
 
-// $username = "sogo1";
-// $password = "sogo1";
-//
-// define('CALDAV_SERVER', 'http://sogo-demo.inverse.ca');
-// define('CALDAV_PORT', '80');
-// define('CALDAV_PATH', '/SOGo/dav/%u/Calendar/');
-// define('CALDAV_PERSONAL', 'personal');
-// define('CALDAV_SUPPORTS_SYNC', true);
+$username = "fmbiete";
+$password = "fmb13t313";
+
+define('CALDAV_SERVER', 'https://calendariocorreo.epi.es');
+// define('CALDAV_PORT', '446');
+// define('CALDAV_SERVER', 'https://calendariocorreo.renr.es');
+define('CALDAV_PORT', '443');
+define('CALDAV_PATH', '/caldav.php/%u/');
+define('CALDAV_PERSONAL', 'EPI');
+define('CALDAV_SUPPORTS_SYNC', true);
 
 $caldav_path = str_replace('%u', $username, CALDAV_PATH);
 $caldav = new CalDAVClient(CALDAV_SERVER . ":" . CALDAV_PORT . $caldav_path, $username, $password);
@@ -23,20 +25,20 @@ $caldav = new CalDAVClient(CALDAV_SERVER . ":" . CALDAV_PORT . $caldav_path, $us
 printf("Connected %d\n", $caldav->CheckConnection());
 
 // Show options supported by server
-$options = $caldav->DoOptionsRequest();
-print_r($options);
+// $options = $caldav->DoOptionsRequest();
+// print_r($options);
 
-$calendars = $caldav->FindCalendars();
-print_r($calendars);
+// $calendars = $caldav->FindCalendars();
+// print_r($calendars);
 
-$path = $caldav_path . "personal" . "/";
-$val = $caldav->GetCalendarDetails($path);
-print_r($val);
+$path = $caldav_path . "EPI" . "/";
+// $val = $caldav->GetCalendarDetails($path);
+// print_r($val);
 
-$begin = gmdate("Ymd\THis\Z", time() - 24*7*60*60);
-$finish = gmdate("Ymd\THis\Z", 2147483647);
-$msgs = $caldav->GetEvents($begin, $finish, $path);
-print_r($msgs);
+// $begin = gmdate("Ymd\THis\Z", time() - 24*7*60*60);
+// $finish = gmdate("Ymd\THis\Z", 2147483647);
+// $msgs = $caldav->GetEvents($begin, $finish, $path);
+// print_r($msgs);
 
 // Initial sync
 $results = $caldav->GetSync($path, true, CALDAV_SUPPORTS_SYNC);
